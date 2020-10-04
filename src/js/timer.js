@@ -11,17 +11,17 @@ export class CountDown {
         return String(value).padStart(2, '0')
     }
         
-    daysTimeChange () {
-        const todayDate = new Date();
-        const time = this.coutDownDate - todayDate;
-        const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
-        const hours = this.pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-        const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
-        const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
-        this.daysRef.textContent = days;
-        this.hoursRef.textContent = hours;
-        this.minutsRef.textContent = mins;
-        this.secondsRef.textContent = secs;
+    timeTextContent(time) {
+        this.daysRef.textContent = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
+        this.hoursRef.textContent = this.pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+        this.minutsRef.textContent = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+        this.secondsRef.textContent = this.pad(Math.floor((time % (1000 * 60)) / 1000));        
+    }
+
+    daysTimeChange() {
+        const currentDate = new Date();
+        const time = this.coutDownDate - currentDate;
+        this.timeTextContent(time)
     }
 
     countDown () {    
